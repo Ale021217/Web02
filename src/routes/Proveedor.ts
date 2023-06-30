@@ -1,12 +1,9 @@
 import { Router } from "express";
-import CabeceraController from "../controller/Cabecera_FacturaController";
-import Proveedor_Controller from "../controller/ProveedorController";
-
+import ProveedorController from "../controller/ProveedorController";
 const routes = Router();
-routes.get('',Proveedor_Controller.getAll);
-routes.patch('',Proveedor_Controller.update)
-routes.post('', Proveedor_Controller.add)
-routes.delete('',Proveedor_Controller.getById)
-
-
+routes.get("", ProveedorController.getAll);
+routes.get("/getById/:Codigo_proveedor", ProveedorController.getById);
+routes.post("", ProveedorController.add);
+routes.patch("/:Codigo_proveedor", ProveedorController.update);
+routes.delete("/:Codigo_proveedor", ProveedorController.delete);
 export default routes;

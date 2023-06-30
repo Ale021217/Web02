@@ -3,7 +3,7 @@ import { Cliente } from "../entity/Cliente";
 import { validate } from "class-validator";
 import { AppDataSource } from "../data-source";
 
-class ClienteController {
+class ClienteControlller {
   static getAll = async (req: Request, resp: Response) => {
     try {
       const repo = AppDataSource.getRepository(Cliente);
@@ -93,19 +93,19 @@ class ClienteController {
       } = req.body;
 
       const repo = AppDataSource.getRepository(Cliente);
-      const nuevo = await repo.findOne({ where: { Ruc_cliente: Ruc_cliente } });
-      if (!nuevo) {
+      const Nuevo = await repo.findOne({ where: { Ruc_cliente: Ruc_cliente } });
+      if (!Nuevo) {
         return resp
           .status(400)
           .json({ mensaje: "No existe en la base de datos." });
       }
 
-      nuevo.Nombres_cliente = Nombres_cliente;
-      nuevo.Apellidos_cliente = Apellidos_cliente;
-      nuevo.Direccion_cliente = Direccion_cliente;
-      nuevo.Telefono_cliente = Telefono_cliente;
+      Nuevo.Nombres_cliente = Nombres_cliente;
+      Nuevo.Apellidos_cliente = Apellidos_cliente;
+      Nuevo.Direccion_cliente = Direccion_cliente;
+      Nuevo.Telefono_cliente = Telefono_cliente;
 
-      const errors = await validate(nuevo, {
+      const errors = await validate(Nuevo, {
         validationError: { target: false, value: false },
       });
 
@@ -114,7 +114,7 @@ class ClienteController {
       }
 
       try {
-        await repo.save(nuevo);
+        await repo.save(Nuevo);
         return resp
           .status(201)
           .json({ mensaje: "Se ha guardado correctamente" });
@@ -152,4 +152,4 @@ class ClienteController {
   };
 }
 
-export default ClienteController;
+export default ClienteControlller;

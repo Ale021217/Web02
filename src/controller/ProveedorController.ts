@@ -152,7 +152,7 @@ class ProveedorController {
         return resp.status(400).json({ mensaje: "No se encontro" });
       }
       try {
-        await repo.delete(provedoor);
+        await repo.delete(Codigo_proveedor);
         return resp
           .status(200)
           .json({ mensaje: "Se a eliminado correctamente" });

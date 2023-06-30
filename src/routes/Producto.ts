@@ -1,12 +1,9 @@
 import { Router } from "express";
-import CabeceraController from "../controller/Cabecera_FacturaController";
-import Producto_Controller from "../controller/ProductoController";
-
+import ProductoController from "../controller/ProductoController";
 const routes = Router();
-routes.get('',Producto_Controller.getAll);
-routes.patch('',Producto_Controller.update)
-routes.post('', Producto_Controller.add)
-routes.delete('',Producto_Controller.getById)
-
-
+routes.get("", ProductoController.getAll);
+routes.get("/getById/:Codigo_producto", ProductoController.getById);
+routes.post("", ProductoController.add);
+routes.patch("/:Codigo_producto", ProductoController.update);
+routes.delete("/:Codigo_producto", ProductoController.delete);
 export default routes;

@@ -139,16 +139,16 @@ class ProductoController {
     try {
       const Codigo_producto = parseInt(req.params["Codigo_producto"]);
       const repo = AppDataSource.getRepository(Producto);
-      let produto: Producto;
+      let producto: Producto;
       try {
-        produto = await repo.findOneOrFail({
+        producto = await repo.findOneOrFail({
           where: { Codigo_producto },
         });
       } catch (error) {
         return resp.status(400).json({ mensaje: "No se encontro" });
       }
       try {
-        await repo.delete(produto);
+        await repo.delete(Codigo_producto);
         return resp
           .status(200)
           .json({ mensaje: "Se a eliminado correctamente" });
